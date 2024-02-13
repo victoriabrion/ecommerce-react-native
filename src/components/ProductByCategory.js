@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     },
     text: {
         width: '60%',
-        fontSize: 16
+        fontSize: 16,
+        fontFamily: 'Poppins'
     },
     image: {
         width: 90,
