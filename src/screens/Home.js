@@ -5,10 +5,10 @@ import { fontCollection } from '../utils/globals/fonts'
 
 const Home = ({selectedCategoryState}) => {
   return (
-    <View>
+    <>
         <Header title='Home' style= {styles.container}/>
         <Categories selectedCategoryState = {selectedCategoryState}/>
-    </View>
+    </>
   )
 }
 
