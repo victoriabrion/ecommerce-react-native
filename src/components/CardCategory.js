@@ -2,9 +2,9 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import ShadowPrimary from './wrappers/ShadowPrimary'
 import colors from '../utils/globals/colors'
 
-const CardCategory = ({item, selectedCategoryState}) => { 
+const CardCategory = ({item, navigation}) => { 
   return (
-    <Pressable onPress={() =>  selectedCategoryState (item)}>
+    <Pressable onPress={() => navigation.navigate('ItemListCategory', {categorySelected:item})}>
         <ShadowPrimary style = {styles.container}>
             <Text style = {styles.text}>{item}</Text>
         </ShadowPrimary>

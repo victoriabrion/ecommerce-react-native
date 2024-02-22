@@ -1,13 +1,12 @@
-import { StyleSheet, View, FlatList, Text } from 'react-native'
+import { StyleSheet } from 'react-native'
 import Header from '../components/Header'
 import Categories from '../components/Categories'
 import { fontCollection } from '../utils/globals/fonts'
 
-const Home = ({selectedCategoryState}) => {
+const Home = ({navigation}) => {
   return (
     <>
-        <Header title='Home' style= {styles.container}/>
-        <Categories selectedCategoryState = {selectedCategoryState}/>
+        <Categories navigation = {navigation}/>
     </>
   )
 }

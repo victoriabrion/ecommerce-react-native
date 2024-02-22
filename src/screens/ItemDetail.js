@@ -4,7 +4,9 @@ import products from '../utils/data/products.json'
 import Header from '../components/Header'
 import colors from '../utils/globals/colors'
 
-const ItemDetail = ({productId}) => {
+const ItemDetail = ({route}) => {
+
+  const {productId} = route.params
 
   const [product, setProduct] = useState ({})
 
@@ -16,7 +18,6 @@ const ItemDetail = ({productId}) => {
 
   return (
     <View style = {styles.container}>
-    <Header title='Product detail'/>
     <View style = {styles.content}>
       <Image style ={styles.image} source= {{uri:product?.thumbnail}} resizeMode= 'cover' />
       <View style= {styles.containerText}>
