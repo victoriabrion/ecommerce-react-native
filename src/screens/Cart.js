@@ -1,10 +1,12 @@
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
-import cart from '../utils/data/cart.json'
-import fonts from '../utils/globals/fonts'
 import colors from '../utils/globals/colors'
 import CartItem from '../components/CartItem'
+import { useSelector } from 'react-redux'
 
 const Cart = () => {
+
+    const cart = useSelector((state) => state.cart)
+
   return (
     <View style={styles.container}>
         <FlatList data={cart.items} keyExtractor={(item)=> item.id} renderItem={({item})=> <CartItem item={item}/>}/>

@@ -3,6 +3,9 @@ import { useFonts } from "expo-font"
 import { fontCollection } from './src/utils/globals/fonts'
 import colors from './src/utils/globals/colors'
 import MainNavigatior from './src/navigation/MainNavigatior'
+import { store } from './src/app/store'
+import { Provider } from 'react-redux'
+
 
 const App = () => {
 
@@ -14,7 +17,9 @@ const App = () => {
   return (
     <>
     <StatusBar backgroundColor={colors.tertiary}  barStyle= 'light-content'/>
-    <MainNavigatior />
+    <Provider store={store}>
+      <MainNavigatior />
+    </Provider>
     </>
   )
 }
