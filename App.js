@@ -2,7 +2,7 @@ import {StatusBar} from 'react-native'
 import { useFonts } from "expo-font"
 import { fontCollection } from './src/utils/globals/fonts'
 import colors from './src/utils/globals/colors'
-import MainNavigatior from './src/components/navigation/MainNavigatior'
+import MainNavigatior from './src/navigation/MainNavigatior'
 
 const App = () => {
 
