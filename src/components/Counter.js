@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, incrementByAmount } from '../features/counter/counterSlice'
+import { addCartItem } from '../features/cart/cartSlice'
 
 const Counter = () => {
 
@@ -11,9 +12,9 @@ const Counter = () => {
 
   return (
     <View style={styles.counterContainer}>
-        <Button title='add' onPress={() => dispatch(increment())} />
+        <Button title='+' onPress={() => dispatch(increment())} />
         <Text>{count}</Text>
-        <Button title='substract' onPress={() => dispatch(decrement())} />
+        <Button title='-' onPress={() => dispatch(decrement())} />
         <TextInput style={styles.input} onChangeText={(t) => setNumber(parseInt(t))} />
         <Button title= 'amount' onPress={()=> dispatch(incrementByAmount(number))} />
     </View>
