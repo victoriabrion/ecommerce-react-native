@@ -4,13 +4,13 @@ import products from '../utils/data/products.json'
 import { useEffect, useState } from 'react'
 import ProductByCategory from '../components/ProductByCategory'
 import SearchBar from '../components/SearchBar'
+import { useGetProductsByCategoryQuery } from '../app/services/shop'
 
 const ItemListCategory = ({route, navigation}) => {
 
   const {categorySelected} = route.params
-
+  const {data:products} = useGetProductsByCategoryQuery(categorySelected)
   const [productsFiltered, setProductsFiltered] = useState ([])
-
   const [keyWord, setKeyWord] = useState ('')
 
   const handlerKeyWord = (k) => {
@@ -18,14 +18,15 @@ const ItemListCategory = ({route, navigation}) => {
   }
 
   useEffect (() => {
-    if (categorySelected) setProductsFiltered(products.filter (product => product.category === categorySelected))
+    setProductsFiltered(products)
     if (keyWord) setProductsFiltered(productsFiltered.filter(product => {
       const productTitleLower = product.title.toLocaleLowerCase()
       const keyWordLower = keyWord.toLocaleLowerCase()
       return productTitleLower.includes(keyWordLower)
     }))
-  }, [categorySelected, keyWord])
+  }, [categorySelected, keyWord, products])
 
+  if (isLoading) return <View><Text>Loading...</Text></View>
 
   return (
     <>

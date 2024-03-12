@@ -1,17 +1,18 @@
 import { StyleSheet, Text, View , Pressable, Image} from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import products from '../utils/data/products.json'
 import colors from '../utils/globals/colors'
 import { useDispatch } from 'react-redux'
 import { addCartItem } from '../features/cart/cartSlice'
+import { useGetProductQuery } from '../app/services/shop'
 
 const ItemDetail = ({route}) => {
 
   const dispatch = useDispatch()
-
   const {productId} = route.params
+  const {data: product, isLoading} = useGetProductQuery(productId)
 
-  const [product, setProduct] = useState ({})
+  if (isLoading) return null
 
   useEffect(() => {
 
