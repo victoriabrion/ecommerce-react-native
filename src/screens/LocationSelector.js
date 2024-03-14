@@ -36,7 +36,7 @@ const LocationSelector = ({navigation}) => {
   useEffect(()=>{
     (async ()=>{
         if(location.latitude){
-            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=AIzaSyCBZPbHfFf3Ogj7fE-BpCLibDEndbErOFU`)
+            const response = await fetch(``)
             const data = await response.json()
             setAddress(data.results[0].formatted_address)
         }

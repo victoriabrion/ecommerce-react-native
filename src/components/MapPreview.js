@@ -2,10 +2,10 @@ import { StyleSheet, Image} from 'react-native'
 
 const MapPreview = ({latitude,longitude}) => {
 
-    const mapPreviewUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=15&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C${latitude},${longitude}&key=AIzaSyCBZPbHfFf3Ogj7fE-BpCLibDEndbErOFU`
+    const mapPreviewUrl = ``
 
   return (
-    <Image source={latitude ? {uri:mapPreviewUrl} : require("../../assets/map.jpg")} style={styles.image}/>
+    <Image source={latitude ? {uri:mapPreviewUrl} : require("../../assets/favicon.png")} style={styles.image}/>
   )
 }
 
