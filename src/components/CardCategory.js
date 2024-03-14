@@ -17,7 +17,7 @@ export default CardCategory
 const styles = StyleSheet.create({
     container: {
         width: '80%',
-        backgroundColor: colors. secondary,
+        backgroundColor: colors.secondary,
         marginHorizontal: '10%',
         marginVertical: 10,
         padding: 20,

@@ -6,9 +6,7 @@ import { useState } from 'react'
 const SearchBar = ({handlerKeyWord}) => {
 
     const [input, setInput] = useState ('')
-
     const [error, setError] = useState ('')
-
     const handlerInput = (t) => setInput (t)
 
     const search = () => {
@@ -34,11 +32,9 @@ const SearchBar = ({handlerKeyWord}) => {
     <View>
     <View style= {styles.container}>
       <TextInput placeholder='Search' style= {styles.input} value= {input} onChangeText={handlerInput}/>
-
       <Pressable onPress={search}>
         <AntDesign name= 'search1' size= {30} color= 'black' />
       </Pressable>
-
       <Pressable onPress={resetSearch}>
         <AntDesign name= 'closecircle' size= {30} color= 'black' />
       </Pressable>

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, incrementByAmount } from '../features/counter/counterSlice'
-import { addCartItem } from '../features/cart/cartSlice'
 
 const Counter = () => {
 
@@ -23,4 +22,15 @@ const Counter = () => {
 
 export default Counter
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  counterContainer:{
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    margin: 10
+  },
+  input:{
+    borderWidth: 2,
+    width: 50,
+  }
+})

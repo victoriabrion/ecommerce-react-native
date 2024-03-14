@@ -2,12 +2,12 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import colors from '../utils/globals/colors'
 import { AntDesign } from '@expo/vector-icons'
 
-const Header = ({title = '', navigation}) => {
+const Header = ({title = 'Ecommerce', navigation}) => {
 
   return (
     <View style= {styles.container}>
       {navigation.canGoBack() &&
-      <Pressable style = {styles.back} onPress={() => navigation.goBack()}>
+      <Pressable style = {styles.goBack} onPress={() => navigation.goBack()}>
         <AntDesign name = 'back' size = {25} color = 'white' />
       </Pressable>}
       <Text style= {styles.text}>{title}</Text>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     color: colors.tertiary,
     paddingTop: 20
   },
-  back: {
+  goBack: {
     position: 'absolute',
     left: 10,
     bottom: 25,

@@ -1,15 +1,18 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { AddButton } from '../components/AddButton'
 import { useSelector } from 'react-redux'
-import { useGetImageQuery } from '../app/services/profile'
+import { useGetImageQuery, useGetUserLocationQuery } from '../app/services/profile'
 
 const Profile = ({navigation}) => {
     const localId = useSelector((state) => state.auth.localId)
     const {data} = useGetImageQuery(localId)
+    const {data: locationFormatted} = useGetUserLocationQuery(localId)
+
   return (
     <View style={styles.container}>
       <Image source={data ? {uri:data.image} : require ('../../assets/favicon.png')} style={styles.image} resizeMode='cover'/>
       <AddButton title={'Add profile picture'} onPress={() => navigation.navigate('ImageSelector')} />
+      <AddButton titule= {'Add adress'} onPress= {() => navigation.navigate('LocationSelector')} />
     </View>
   )
 }
