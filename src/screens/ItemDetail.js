@@ -12,13 +12,7 @@ const ItemDetail = ({route}) => {
   const {productId} = route.params
   const {data: product, isLoading} = useGetProductQuery(productId)
 
-  if (isLoading) return null
-
-  useEffect(() => {
-
-    const productFinded = products.find(product => product.id === productId)
-    setProduct(productFinded)
-  }, [productId])
+  if (isLoading) return <View><Text>Loading...</Text></View>
 
   return (
     <View style = {styles.container}>

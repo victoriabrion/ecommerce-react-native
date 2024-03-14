@@ -1,6 +1,4 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import Header from '../components/Header'
-import products from '../utils/data/products.json'
 import { useEffect, useState } from 'react'
 import ProductByCategory from '../components/ProductByCategory'
 import SearchBar from '../components/SearchBar'
@@ -9,7 +7,7 @@ import { useGetProductsByCategoryQuery } from '../app/services/shop'
 const ItemListCategory = ({route, navigation}) => {
 
   const {categorySelected} = route.params
-  const {data:products} = useGetProductsByCategoryQuery(categorySelected)
+  const {data:products, isError, isLoading, isSuccess, error} = useGetProductsByCategoryQuery(categorySelected)
   const [productsFiltered, setProductsFiltered] = useState ([])
   const [keyWord, setKeyWord] = useState ('')
 
@@ -19,8 +17,8 @@ const ItemListCategory = ({route, navigation}) => {
 
   useEffect (() => {
     setProductsFiltered(products)
-    if (keyWord) setProductsFiltered(productsFiltered.filter(product => {
-      const productTitleLower = product.title.toLocaleLowerCase()
+    if (keyWord) setProductsFiltered(products.filter(product => {
+      const productTitleLower = product.title.toLowerCase()
       const keyWordLower = keyWord.toLocaleLowerCase()
       return productTitleLower.includes(keyWordLower)
     }))

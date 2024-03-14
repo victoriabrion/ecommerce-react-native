@@ -1,9 +1,12 @@
-import { StyleSheet, View, InputForm, SubmitButton, Pressable, Text } from 'react-native'
+import { StyleSheet, View, Pressable, Text } from 'react-native'
 import colors from '../utils/globals/colors'
 import { useState } from 'react'
 import { useRegisterMutation } from '../app/services/auth'
 import { setUser } from '../features/auth/authSlice'
 import { useDispatch } from 'react-redux'
+import InputForm from '../components/InputForm'
+import SubmitButton from '../components/SubmitButton'
+import { registerSchema } from '../utils/validations/authSchema'
 
 const Register = ({navigation, route}) => {
 
@@ -11,19 +14,43 @@ const Register = ({navigation, route}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [errorEmail, setErrorEmail] = useState('')
+    const [errorPassword, setErrorPassword] = useState('')
+    const [errorConfirmPassword, setErrorConfirmPassword] = useState('')
     const [triggerRegister] = useRegisterMutation()
 
     const onSubmit = async () => {
+      try {
+        registerSchema.validateSync({email, password, confirmPassword})
         const {data} = await triggerRegister({email, password})
-        dispatch(setUser({email: data.email, idToken: data.idToken}))
+        dispatch(setUser({email: data.email, idToken: data.idToken, localId: data.localId}))
+      } catch (error) {
+          setErrorEmail('')
+          setErrorPassword('')
+          setErrorConfirmPassword('')
+          switch(error.path) {
+          case 'email':
+            setErrorEmail (error.message)
+            break
+          case 'password':
+            setErrorPassword (error.message)
+            break
+          case 'confirmPassword':
+            setErrorConfirmPassword (error.message)
+            break
+          default:
+            break
+        }
+      } 
+       
     }
     
   return (
     <View style={styles.main}>
     <View style={styles.container}>
-        <InputForm label='Email' value={email} onChangeText={(t) => setEmail(t)} isSecure={false} error=''/>
-        <InputForm label='Password' value={password} onChangeText={(t) => setPassword(t)} isSecure={true} error=''/>
-        <InputForm label='Confirm Password' value={confirmPassword} onChangeText={(t) => setConfirmPassword(t)} error=''/>
+        <InputForm label='Email' value={email} onChangeText={(t) => setEmail(t)} isSecure={false} error={errorEmail}/>
+        <InputForm label='Password' value={password} onChangeText={(t) => setPassword(t)} isSecure={true} error={errorPassword}/>
+        <InputForm label='Confirm Password' value={confirmPassword} onChangeText={(t) => setConfirmPassword(t)} error={errorConfirmPassword}/>
         <SubmitButton onPress={onSubmit} title='Register'/>
         <Text style={styles.sub}> Do you already have an account? </Text>
         <Pressable onPress={() => navigation.navigate('Login')}>
@@ -45,7 +72,7 @@ main:{
   },
   container:{
     width: '90%',
-    backgroundColor: colors.primary,
+    backgroundColor: colors.secondary,
     gap: 15,
     borderRadius: 10,
     justifyContent: 'center',
@@ -63,6 +90,6 @@ main:{
   subLink:{
     fontSize: 14,
     fontFamily: 'Poppins',
-    color: 'Poppins'
+    color: colors.tertiary
   }
 })
