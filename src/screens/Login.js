@@ -20,7 +20,7 @@ const [triggerLogin] = useLoginMutation()
 
 const onSubmit = async () => {
     try {
-        loginSchema.validateSync({email, password, confirmPassword})
+        loginSchema.validateSync({email, password})
         const {data} = await triggerLogin({email, password})
         dispatch(setUser({email: data.email, idToken: data.idToken, localId:data.localId}))
       } catch (error) {

@@ -2,7 +2,7 @@ import {StatusBar} from 'react-native'
 import { useFonts } from "expo-font"
 import { fontCollection } from './src/utils/globals/fonts'
 import colors from './src/utils/globals/colors'
-import MainNavigatior from './src/navigation/MainNavigatior'
+import MainNavigator from './src/navigation/MainNavigator'
 import { store } from './src/app/store'
 import { Provider } from 'react-redux'
 
@@ -18,7 +18,7 @@ const App = () => {
     <>
     <StatusBar backgroundColor={colors.tertiary}  barStyle= 'light-content'/>
     <Provider store={store}>
-      <MainNavigatior />
+      <MainNavigator/>
     </Provider>
     </>
   )

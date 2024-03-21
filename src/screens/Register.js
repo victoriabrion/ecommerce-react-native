@@ -8,7 +8,7 @@ import InputForm from '../components/InputForm'
 import SubmitButton from '../components/SubmitButton'
 import { registerSchema } from '../utils/validations/authSchema'
 
-const Register = ({navigation, route}) => {
+const Register = ({navigation}) => {
 
     const dispatch = useDispatch
     const [email, setEmail] = useState('')
@@ -50,11 +50,11 @@ const Register = ({navigation, route}) => {
     <View style={styles.container}>
         <InputForm label='Email' value={email} onChangeText={(t) => setEmail(t)} isSecure={false} error={errorEmail}/>
         <InputForm label='Password' value={password} onChangeText={(t) => setPassword(t)} isSecure={true} error={errorPassword}/>
-        <InputForm label='Confirm Password' value={confirmPassword} onChangeText={(t) => setConfirmPassword(t)} error={errorConfirmPassword}/>
+        <InputForm label='Confirm Password' value={confirmPassword} onChangeText={(t) => setConfirmPassword(t)} isSecure={true} error={errorConfirmPassword}/>
         <SubmitButton onPress={onSubmit} title='Register'/>
         <Text style={styles.sub}> Do you already have an account? </Text>
         <Pressable onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.subLink}>Hello!</Text>
+            <Text style={styles.subLink}>Login</Text>
         </Pressable>
     </View>
 </View>

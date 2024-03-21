@@ -2,12 +2,16 @@ import { NavigationContainer } from '@react-navigation/native'
 import TabNavigator from './TabNavigator'
 import AuthStack from './AuthStack'
 import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 
-const MainNavigatior = () => {
+const MainNavigator = () => {
 
-  const user = useSelector((state => state.auth))
+  const user = useSelector((state) => state.auth)
 
+  useEffect(()=>{
+    console.log(user)
+  },[user])
 
   return (
     <NavigationContainer>
@@ -16,5 +20,5 @@ const MainNavigatior = () => {
   )
 }
 
-export default MainNavigatior
+export default MainNavigator
 
